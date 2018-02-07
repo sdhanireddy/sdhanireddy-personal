@@ -58,7 +58,7 @@ def get_blobs(n):
     try:
         resp.raise_for_status()
     except:
-        print(resp.text)
+        print(resp.json()['error'])
         resp.raise_for_status()
     return resp.json()['result']['random']['data'][0]
 
@@ -77,8 +77,8 @@ def image(width, length):
             pixels[i,j] = (next(random_lst), next(random_lst), next(random_lst))
     img.show()
 
-###I couldn't pip install pycrypto because I had some errors, but this is
-###what I got out from the sources above
+###I couldn't pip install pycrypto because I had some errors so I can't test this,
+###but this is what I got from the sources above
 def generate_RSA(bits=2048):
     '''
     Generate an RSA keypair with an exponent of 65537 in PEM format
